@@ -1,0 +1,48 @@
+.navigationBar {
+  width: 15%;
+  height: 100vh;
+  background-color: black;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  font-size: 2.4rem;
+}
+
+.linksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.imageContainer {
+  width: 12rem;
+  height: auto;
+  align-self: center;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.btnContainer {
+  align-self: center;
+  width: 100%;
+}
+
+.btnLogin {
+  font-weight: 700;
+  padding: 1rem 2rem;
+  width: 100%;
+  background-color: transparent;
+  color: #fff;
+  border: 0.2rem white solid;
+  cursor: pointer;
+}
+
+.btnLogin:hover {
+  background-color: #fff;
+  color: black;
+}
