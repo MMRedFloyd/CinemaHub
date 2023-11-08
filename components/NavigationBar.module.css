@@ -1,7 +1,7 @@
 .navigationBar {
   width: 15%;
   height: 100vh;
-  background-color: black;
+  background-color: #101012;
   font-size: 2rem;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,17 @@
 .linksContainer {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
+}
+
+.link {
+  display: block;
+  padding: 0.5rem 0 0.5rem 1rem;
+}
+
+.bgMelt {
+  background-color: #1d2127;
+  width: 110%;
 }
 
 .imageContainer {
@@ -37,12 +47,12 @@
   padding: 1rem 2rem;
   width: 100%;
   background-color: transparent;
-  color: #fff;
-  border: 0.2rem white solid;
+  color: #d1d7e0;
+  border: 0.2rem #d1d7e0 solid;
   cursor: pointer;
 }
 
 .btnLogin:hover {
-  background-color: #fff;
+  background-color: #d1d7e0;
   color: black;
 }

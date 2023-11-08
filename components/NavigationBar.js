@@ -2,17 +2,43 @@ import Link from "next/link";
 import classes from "./NavigationBar.module.css";
 import logo from "../public/logo.png";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 function NavigationBar() {
+  const router = useRouter();
+
   return (
     <>
       <div className={classes.navigationBar}>
         <div className={classes.linksContainer}>
-          <Link href="home">Home</Link>
-          <Link href="movies">Movies</Link>
-          <Link href="tvshows">TV Shows</Link>
-          <Link href="news">News</Link>
-          <Link href="loop">Loop</Link>
+          <div className={router.pathname === "/" ? classes.bgMelt : ""}>
+            <Link className={classes.link} href="/">
+              Home
+            </Link>
+          </div>
+
+          <div className={router.pathname === "/movies" ? classes.bgMelt : ""}>
+            <Link className={classes.link} href="movies">
+              Movies
+            </Link>
+          </div>
+
+          <div className={router.pathname === "/tvshows" ? classes.bgMelt : ""}>
+            <Link className={classes.link} href="tvshows">
+              TV Shows
+            </Link>
+          </div>
+
+          <div className={router.pathname === "/news" ? classes.bgMelt : ""}>
+            <Link className={classes.link} href="news">
+              News
+            </Link>
+          </div>
+          <div className={router.pathname === "/loop" ? classes.bgMelt : ""}>
+            <Link className={classes.link} href="loop">
+              Loop
+            </Link>
+          </div>
         </div>
         <div className={classes.imageContainer}>
           <Link href="/">

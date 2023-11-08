@@ -1,0 +1,19 @@
+.welcome {
+  font-size: 4rem;
+  padding-bottom: 2rem;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.imageContainer {
+  width: 25rem;
+  height: auto;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}

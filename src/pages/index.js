@@ -1,9 +1,9 @@
-import NavigationBar from "../../components/NavigationBar";
+import HomePageComponent from "../../components/HomePageComponent";
 
 function HomePage() {
   return (
     <>
-      <NavigationBar />
+      <HomePageComponent />
     </>
   );
 }
