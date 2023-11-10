@@ -2,6 +2,7 @@
   display: flex;
   padding: 2rem 0 6rem 0; /* set 2rem to 6rem if below applied*/
   position: relative;
+  gap: 2rem;
 }
 
 /* .itemsContainer::after {

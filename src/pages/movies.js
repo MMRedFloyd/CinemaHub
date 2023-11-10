@@ -4,26 +4,62 @@ import classes from "../styles/moviesntvshows.module.css";
 import { key } from "../../components/api";
 
 export default function MoviesHomePage() {
-  const [popularMovies, setPopularMovies] = useState({});
+  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [upcomingMovies, setUpcomingMovies] = useState([]);
+  const [topratedMovies, setTopratedMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchPopularMovies() {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=${key}`
-      );
-      const data = await response.json();
-      console.log(data);
+      // setLoading(true);
 
-      const transformedPopularMovies = data.results.map((movie) => {
+      // Trending movies
+      const responseTrending = await fetch(
+        `https://api.themoviedb.org/3/trending/movie/week?language=en-US&api_key=${key}`
+      );
+      const dataTrending = await responseTrending.json();
+      const transformedTrendingMovies = dataTrending.results.map((movie) => {
         return {
           id: movie.id,
           title: movie.title,
-          genresIds: movie.genre_ids,
-          image: movie.poster_path,
+          image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          vote: movie.vote_average.toFixed(1),
+          voteCount: movie.vote_count,
         };
       });
+      setTrendingMovies(transformedTrendingMovies);
 
-      setPopularMovies(transformedPopularMovies);
+      // Upcoming movies
+      const responseUpcoming = await fetch(
+        `https://api.themoviedb.org/3/movie/upcoming?language=en-US&api_key=${key}`
+      );
+      const dataUpcoming = await responseUpcoming.json();
+      const transformedUpcomingMovies = dataUpcoming.results.map((movie) => {
+        return {
+          id: movie.id,
+          title: movie.title,
+          image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          vote: movie.vote_average.toFixed(1),
+          voteCount: movie.vote_count,
+        };
+      });
+      setUpcomingMovies(transformedUpcomingMovies);
+
+      // Top Rated movies
+      const responseToprated = await fetch(
+        `https://api.themoviedb.org/3/movie/top_rated?language=en-US&api_key=${key}`
+      );
+      const dataToprated = await responseToprated.json();
+      const transformedTopratedMovies = dataToprated.results.map((movie) => {
+        return {
+          id: movie.id,
+          title: movie.title,
+          image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          vote: movie.vote_average.toFixed(1),
+          voteCount: movie.vote_count,
+        };
+      });
+      setTopratedMovies(transformedTopratedMovies);
     }
     fetchPopularMovies();
   }, []);
@@ -32,18 +68,18 @@ export default function MoviesHomePage() {
     <>
       <h1 className={classes.titlePage}>Movies</h1>
       <div>
-        <h2 className={classes.sectionTitle}>Popular</h2>
-        <Items movies={popularMovies} />
+        <h2 className={classes.sectionTitle}>Trending</h2>
+        <Items data={trendingMovies} />
       </div>
 
       <div>
         <h2 className={classes.sectionTitle}>Upcoming</h2>
-        {/* <Items /> */}
+        <Items data={upcomingMovies} />
       </div>
 
       <div>
         <h2 className={classes.sectionTitle}>Top Rated</h2>
-        {/* <Items /> */}
+        <Items data={topratedMovies} />
       </div>
     </>
   );
