@@ -14,6 +14,7 @@ function HomePageComponent() {
         `https://api.themoviedb.org/3/trending/movie/week?language=en-US&api_key=${key}`
       );
       const dataTrendingMovies = await responseTrendingMovies.json();
+      console.log(dataTrendingMovies);
       const transformedTrendingMovies = dataTrendingMovies.results.map(
         (movie) => {
           return {
@@ -32,7 +33,6 @@ function HomePageComponent() {
         `https://api.themoviedb.org/3/trending/tv/week?language=en-US&api_key=${key}`
       );
       const dataTrendingTvshows = await responseTrendingTvshows.json();
-      console.log(dataTrendingTvshows);
       const transformedTrendingTvshows = dataTrendingTvshows.results.map(
         (tvshow) => {
           return {

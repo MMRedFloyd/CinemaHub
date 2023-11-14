@@ -42,7 +42,9 @@ export default function Items({ data, hrefProp }) {
         <div className={classes.itemsContainer}>
           {data.map((item) => (
             <SwiperSlide className={classes.swiperSlide}>
-              <Item key={item.id} item={item} />
+              <Link href={"872585"}>
+                <Item key={item.id} item={item} />
+              </Link>
             </SwiperSlide>
           ))}
         </div>
