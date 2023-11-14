@@ -7,7 +7,7 @@ export default function MoviesHomePage() {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [topratedMovies, setTopratedMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchPopularMovies() {

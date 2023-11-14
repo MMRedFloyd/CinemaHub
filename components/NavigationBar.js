@@ -3,9 +3,16 @@ import classes from "./NavigationBar.module.css";
 import logo from "../public/logo.png";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { searchActions } from "../store/search-slice";
 
 function NavigationBar() {
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  function showSearchBar() {
+    dispatch(searchActions.setSearchVisible());
+  }
 
   return (
     <>
@@ -47,13 +54,13 @@ function NavigationBar() {
             </Link>
           </div>
           <div
-            className={
-              router.pathname.startsWith("/loop") ? classes.bgMelt : ""
-            }
+          // className={
+          //   router.pathname.startsWith("/loop") ? classes.bgMelt : ""
+          // }
           >
-            <Link className={classes.link} href="/loop">
-              Loop
-            </Link>
+            <a className={classes.link} onClick={showSearchBar}>
+              Search
+            </a>
           </div>
         </div>
         <div className={classes.imageContainer}>

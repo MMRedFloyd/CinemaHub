@@ -1,0 +1,44 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 15%;
+  width: 100%;
+  z-index: 30;
+  animation: slide-down 500ms ease-out forwards;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+}
+
+/* Apply the slide-up animation when the modal is closed */
+.closed {
+  animation: slide-up 1000ms ease-out forwards;
+}
