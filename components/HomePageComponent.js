@@ -55,12 +55,12 @@ function HomePageComponent() {
       <h1 className={classes.welcome}>CinemaHub</h1>
       <div className={classes.mntContainer}>
         <h2 className={classes.sectionTitle}>Movies</h2>
-        <Items data={trendingMovies} />
+        <Items data={trendingMovies} hrefProp="/movies" />
       </div>
 
       <div className={classes.mntContainer}>
         <h2 className={classes.sectionTitle}>TV Shows</h2>
-        <Items data={trendingTvshows} />
+        <Items data={trendingTvshows} hrefProp="/tvshows" />
       </div>
 
       <div className={classes.newsContainer}>

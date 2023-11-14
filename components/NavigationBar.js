@@ -17,25 +17,41 @@ function NavigationBar() {
             </Link>
           </div>
 
-          <div className={router.pathname === "/movies" ? classes.bgMelt : ""}>
-            <Link className={classes.link} href="movies">
+          <div
+            className={
+              router.pathname.startsWith("/movies") ? classes.bgMelt : ""
+            }
+          >
+            <Link className={classes.link} href="/movies">
               Movies
             </Link>
           </div>
 
-          <div className={router.pathname === "/tvshows" ? classes.bgMelt : ""}>
-            <Link className={classes.link} href="tvshows">
+          <div
+            className={
+              router.pathname.startsWith("/tvshows") ? classes.bgMelt : ""
+            }
+          >
+            <Link className={classes.link} href="/tvshows">
               TV Shows
             </Link>
           </div>
 
-          <div className={router.pathname === "/news" ? classes.bgMelt : ""}>
-            <Link className={classes.link} href="news">
+          <div
+            className={
+              router.pathname.startsWith("/news") ? classes.bgMelt : ""
+            }
+          >
+            <Link className={classes.link} href="/news">
               News
             </Link>
           </div>
-          <div className={router.pathname === "/loop" ? classes.bgMelt : ""}>
-            <Link className={classes.link} href="loop">
+          <div
+            className={
+              router.pathname.startsWith("/loop") ? classes.bgMelt : ""
+            }
+          >
+            <Link className={classes.link} href="/loop">
               Loop
             </Link>
           </div>

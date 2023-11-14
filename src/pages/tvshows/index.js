@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Items from "../../components/Items";
-import classes from "../styles/moviesntvshows.module.css";
-import { key } from "../../components/api";
+import Items from "../../../components/Items";
+import classes from "../../styles/moviesntvshows.module.css";
+import { key } from "../../../components/api";
 
 export default function TvshowsHomePage() {
   const [trendingTvshows, setTrendingTvshows] = useState([]);
@@ -73,17 +73,17 @@ export default function TvshowsHomePage() {
       <h1 className={classes.titlePage}>TV Shows</h1>
       <div>
         <h2 className={classes.sectionTitle}>Trending</h2>
-        <Items data={trendingTvshows} />
+        <Items data={trendingTvshows} hrefProp={"/tvshows/trending"} />
       </div>
 
       <div>
         <h2 className={classes.sectionTitle}>Upcoming</h2>
-        <Items data={upcomingTvshows} />
+        <Items data={upcomingTvshows} hrefProp={"/tvshows/upcoming"} />
       </div>
 
       <div>
         <h2 className={classes.sectionTitle}>Top Rated</h2>
-        <Items data={topratedTvshows} />
+        <Items data={topratedTvshows} hrefProp={"/tvshows/toprated"} />
       </div>
     </>
   );

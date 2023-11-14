@@ -5,6 +5,27 @@
   gap: 2rem;
 }
 
+.itemContainer {
+  width: 25rem;
+  height: 37.5rem;
+  margin: 2rem;
+  padding: 2rem;
+  border: 1px solid rgb(20, 177, 169);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exploremore {
+  font-size: 2rem;
+  color: rgb(20, 177, 169);
+  display: inline-block;
+}
+
+.exploremore:hover {
+  color: rgb(12, 100, 96);
+}
+
 /* .itemsContainer::after {
   position: absolute;
   content: "";
@@ -68,6 +89,7 @@ body {
   justify-content: center;
   position: relative;
   padding: 2rem 0 6rem 0;
+  /* border: 1px solid rgb(20, 177, 169); */
 }
 
 .swiperSlide img {

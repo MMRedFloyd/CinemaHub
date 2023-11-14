@@ -8,11 +8,13 @@ import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "./Items.module.css";
 
 // import required modules
 import { Keyboard, Scrollbar, Navigation, Pagination } from "swiper/modules";
+import Link from "next/link";
 
-export default function Items({ data }) {
+export default function Items({ data, hrefProp }) {
   return (
     <>
       <Swiper
@@ -44,6 +46,13 @@ export default function Items({ data }) {
             </SwiperSlide>
           ))}
         </div>
+        <SwiperSlide className={classes.swiperSlide}>
+          <Link href={`${hrefProp}`}>
+            <div className={classes.itemContainer}>
+              <p className={classes.exploremore}>Explore more</p>
+            </div>
+          </Link>
+        </SwiperSlide>
       </Swiper>
     </>
   );

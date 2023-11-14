@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Items from "../../components/Items";
-import classes from "../styles/moviesntvshows.module.css";
-import { key } from "../../components/api";
+import Items from "../../../components/Items";
+import classes from "../../styles/moviesntvshows.module.css";
+import { key } from "../../../components/api";
 
 export default function MoviesHomePage() {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -69,17 +69,17 @@ export default function MoviesHomePage() {
       <h1 className={classes.titlePage}>Movies</h1>
       <div>
         <h2 className={classes.sectionTitle}>Trending</h2>
-        <Items data={trendingMovies} />
+        <Items data={trendingMovies} hrefProp={"/movies/trending"} />
       </div>
 
       <div>
         <h2 className={classes.sectionTitle}>Upcoming</h2>
-        <Items data={upcomingMovies} />
+        <Items data={upcomingMovies} hrefProp={"/movies/upcoming"} />
       </div>
 
       <div>
         <h2 className={classes.sectionTitle}>Top Rated</h2>
-        <Items data={topratedMovies} />
+        <Items data={topratedMovies} hrefProp={"/movies/toprated"} />
       </div>
     </>
   );
