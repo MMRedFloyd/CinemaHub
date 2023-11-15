@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import classes from "../styles/ItemDetails.module.css";
 import { key } from "../../components/api";
-import Image from "next/image";
+import { BsStar } from "react-icons/bs";
 
 export default function ItemDetails() {
   const [details, setDetails] = useState([]);
@@ -20,7 +20,7 @@ export default function ItemDetails() {
         image: `https://image.tmdb.org/t/p/w500${data.backdrop_path}`,
         genres: data.genres,
         overview: data.overview,
-        releaseData: data.release_date,
+        releaseDate: data.release_date,
         runtime: data.runtime,
         tagline: data.tagline,
         vote: data.vote_average,
@@ -37,8 +37,20 @@ export default function ItemDetails() {
   return (
     <>
       <div className={classes.detailsContainer}>
-        <div className={classes.imageContainer}>
-          <img src={details.image} className={classes.image} />
+        <div className={classes.header}>
+          <div className={classes.contentOnImg}>
+            <h1 className={classes.title}>{details.title}</h1>
+            <div className={classes.smallDetails}>
+              <BsStar /> <p>{details.vote}/10</p>
+              <p>({details.voteCount})</p>
+              <p>{details.releaseDate}</p>
+              <p>{details.runtime}</p>
+            </div>
+            <h2 className={classes.overview}>{details.overview}</h2>
+          </div>
+          <div className={classes.imageContainer}>
+            <img src={details.image} className={classes.image} />
+          </div>
         </div>
         <div></div>
       </div>
