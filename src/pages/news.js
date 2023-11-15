@@ -17,7 +17,7 @@ export default function ItemDetails() {
       const transformedDetails = {
         id: data.id,
         title: data.original_title || data.title,
-        image: `https://image.tmdb.org/t/p/w500${data.backdrop_path}`,
+        image: `https://image.tmdb.org/t/p/original${data.backdrop_path}`,
         genres: data.genres,
         overview: data.overview,
         releaseDate: data.release_date,
