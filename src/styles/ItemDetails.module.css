@@ -2,40 +2,9 @@
   padding: 0;
 }
 
-.header {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-}
-
-.contentOnImg {
-  background-color: rgb(0, 0, 0);
-  font-weight: 300;
-  padding-left: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.title {
-  font-size: 4rem;
-}
-
-.smallDetails {
-  font-size: 1.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.overview {
-  font-size: 1.5rem;
-  font-weight: 300;
-}
-
 .imageContainer {
   width: 100%;
-  height: 50rem;
+  height: 70rem;
   position: relative;
 }
 
@@ -44,10 +13,10 @@
   content: "";
   left: 0;
   top: 0;
-  width: 90rem;
+  width: 100%;
   height: 100%;
   background-image: linear-gradient(
-    to right,
+    to top,
     rgba(0, 0, 0, 1),
     rgba(0, 0, 0, 0.5),
     rgba(0, 0, 0, 0)
@@ -58,4 +27,105 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.title {
+  font-size: 5rem;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.smallDetails {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding-top: 1rem;
+}
+
+.genres {
+  display: flex;
+  gap: 2rem;
+}
+
+.genre {
+  width: auto;
+  padding: 0.5rem 2rem;
+  border-radius: 5rem;
+  background-color: rgba(20, 177, 169, 0.408);
+}
+
+.segment {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.clockIcon {
+  font-size: 2rem;
+  color: rgb(20, 177, 169);
+}
+
+.starIcon {
+  font-size: 2rem;
+  fill: rgb(20, 177, 169);
+}
+
+.coreDetails {
+  padding: 6rem;
+  display: flex;
+  gap: 6rem;
+}
+
+.posterContainer {
+  width: 35rem;
+  height: auto;
+}
+
+.poster {
+  width: 100%;
+  height: 100%;
+}
+
+.storylineContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.storyline {
+  font-size: 3rem;
+}
+
+.overview {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.stats {
+  /* display: flex;
+  flex-wrap: wrap; */
+  font-size: 2rem;
+}
+
+.list {
+  list-style: none;
+  /* display: flex; */
+}
+
+.listFlex {
+  /* display: flex; */
+}
+
+.item {
+  /* flex-grow: 1; */
+  padding-right: 3rem;
+}
+
+.value {
+  /* flex-grow: 2; */
 }

@@ -2,10 +2,19 @@ import { useEffect, useState } from "react";
 import classes from "../styles/ItemDetails.module.css";
 import { key } from "../../components/api";
 import { BsStar } from "react-icons/bs";
+import { CiClock2 } from "react-icons/ci";
+import { LuClock3 } from "react-icons/lu";
+import { useDispatch } from "react-redux";
+import { globalActions } from "../../store/global-slice";
 
 export default function ItemDetails() {
   const [details, setDetails] = useState([]);
   const id = "872585";
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(globalActions.setRenderVisible(true));
+  // }, []);
 
   useEffect(() => {
     async function fetchItemDetails() {
@@ -18,17 +27,24 @@ export default function ItemDetails() {
         id: data.id,
         title: data.original_title || data.title,
         image: `https://image.tmdb.org/t/p/original${data.backdrop_path}`,
-        genres: data.genres,
+        poster: `https://image.tmdb.org/t/p/original${data.poster_path}`,
+        genres: data.genres.map((genre) => genre.name),
+        budget: data.budget,
+        languages: data.spoken_languages,
         overview: data.overview,
         releaseDate: data.release_date,
+        releaseYear: parseInt(data.release_date.split("-")[0]),
         runtime: data.runtime,
         tagline: data.tagline,
-        vote: data.vote_average,
+        vote: data.vote_average.toFixed(1),
         voteCount: data.vote_count,
       };
 
+      const runtimeInMinutes = transformedDetails.runtime;
+      transformedDetails.runtimeHours = Math.floor(runtimeInMinutes / 60);
+      transformedDetails.runtimeMinutes = runtimeInMinutes % 60;
+
       setDetails(transformedDetails);
-      console.log(details);
     }
     fetchItemDetails();
   }, []);
@@ -38,21 +54,87 @@ export default function ItemDetails() {
     <>
       <div className={classes.detailsContainer}>
         <div className={classes.header}>
-          <div className={classes.contentOnImg}>
-            <h1 className={classes.title}>{details.title}</h1>
-            <div className={classes.smallDetails}>
-              <BsStar /> <p>{details.vote}/10</p>
-              <p>({details.voteCount})</p>
-              <p>{details.releaseDate}</p>
-              <p>{details.runtime}</p>
-            </div>
-            <h2 className={classes.overview}>{details.overview}</h2>
-          </div>
           <div className={classes.imageContainer}>
-            <img src={details.image} className={classes.image} />
+            <img
+              src={details.image}
+              alt={details.title}
+              className={classes.image}
+            />
+            <h1 className={classes.title}>{details.title}</h1>
           </div>
         </div>
-        <div></div>
+
+        <div className={classes.smallDetails}>
+          <div className={classes.genres}>
+            {/* {details.genres.map((genre) => (
+              <p className={classes.genre}>{genre.name}</p>
+            ))} */}
+            <p>{details.genres}</p>
+          </div>
+
+          <p>{details.releaseYear}</p>
+
+          <div className={classes.segment}>
+            <LuClock3 className={classes.clockIcon} />
+            {details.runtimeHours}h {details.runtimeMinutes}min
+          </div>
+
+          <div className={classes.segment}>
+            <BsStar className={classes.starIcon} />
+            <p>{details.vote}/10</p>
+            <p>({details.voteCount})</p>
+          </div>
+        </div>
+
+        <div className={classes.coreDetails}>
+          <div className={classes.posterContainer}>
+            <img
+              src={details.poster}
+              alt={details.title}
+              className={classes.poster}
+            />
+          </div>
+          <div className={classes.storylineContainer}>
+            <h1 className={classes.storyline}>Storyline</h1>
+            <p className={classes.overview}>{details.overview}</p>
+
+            <div className={classes.stats}>
+              <table>
+                <tr className={classes.listFlex}>
+                  <th className={classes.item}>Released</th>
+                  <td className={classes.value}>{details.releaseDate}</td>
+                </tr>
+
+                <tr className={classes.listFlex}>
+                  <th className={classes.item}>Runtime</th>
+                  <td className={classes.value}>
+                    {details.runtimeHours}h {details.runtimeMinutes}min
+                  </td>
+                </tr>
+
+                <tr className={classes.listFlex}>
+                  <th className={classes.item}>Director</th>
+                  <td className={classes.value}>{details.releaseDate}</td>
+                </tr>
+
+                <tr className={classes.listFlex}>
+                  <th className={classes.item}>Budget</th>
+                  <td className={classes.value}>${details.budget}</td>
+                </tr>
+
+                <tr className={classes.listFlex}>
+                  <th className={classes.item}>Genres</th>
+                  <td className={classes.value}>{details.genres}</td>
+                </tr>
+
+                <tr className={classes.listFlex}>
+                  <th className={classes.item}>Language</th>
+                  <td className={classes.value}>{details.releaseDate}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
