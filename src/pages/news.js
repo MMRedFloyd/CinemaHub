@@ -14,11 +14,11 @@ export default function ItemDetails() {
 
   useEffect(() => {
     async function fetchItemDetails() {
-      dispatch(globalActions.setLoading(true));
+      // dispatch(globalActions.setLoading(true));
       const response = await fetch(
         `https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=${key}`
       );
-      console.log(loading);
+      // console.log(loading);
       const data = await response.json();
       console.log(data);
       const transformedDetails = {
@@ -43,19 +43,18 @@ export default function ItemDetails() {
       transformedDetails.runtimeMinutes = runtimeInMinutes % 60;
 
       setDetails(transformedDetails);
-      dispatch(globalActions.setLoading(false));
-      console.log(loading);
+      // dispatch(globalActions.setLoading(false));
     }
     fetchItemDetails();
+    console.log(details);
+    console.log(details.genres);
+    console.log(Array.isArray(details.genres));
+    // console.log(loading);
   }, []);
-  console.log(details);
-  console.log(details.genres);
-  console.log(Array.isArray(details.genres));
-  console.log(loading);
-  if (!details) {
-    // If details is not yet set, you can choose to render a loading state or return null
-    return <p>Loading...</p>;
-  }
+  // if (!details) {
+  //   // If details is not yet set, you can choose to render a loading state or return null
+  //   return <p>Loading...</p>;
+  // }
 
   return (
     <>
@@ -109,7 +108,9 @@ export default function ItemDetails() {
                 <tr className={classes.listFlex}>
                   <th className={classes.item}>Released</th>
                   <td className={classes.value}>
-                    {new Date(details.releaseData).toLocaleDateString("en-US")}
+                    {new Date(details.releaseDate)
+                      .toLocaleDateString("en-UK")
+                      .replace(/\//g, "-")}
                   </td>
                 </tr>
 
