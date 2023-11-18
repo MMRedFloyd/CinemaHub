@@ -1,6 +1,7 @@
 const { createSlice } = require("@reduxjs/toolkit");
 
 const initialGlobalState = {
+  loading: false,
   isDetailsVisible: false,
 };
 
@@ -10,6 +11,10 @@ const globalSlice = createSlice({
   reducers: {
     setRenderVisible(state, action) {
       state.isDetailsVisible = action.payload;
+    },
+
+    setLoading(state, action) {
+      state.loading = action.payload;
     },
   },
 });

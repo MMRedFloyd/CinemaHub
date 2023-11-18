@@ -2,25 +2,23 @@ import { useEffect, useState } from "react";
 import classes from "../styles/ItemDetails.module.css";
 import { key } from "../../components/api";
 import { BsStar } from "react-icons/bs";
-import { CiClock2 } from "react-icons/ci";
 import { LuClock3 } from "react-icons/lu";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { globalActions } from "../../store/global-slice";
 
 export default function ItemDetails() {
   const [details, setDetails] = useState([]);
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.global.loading);
   const id = "872585";
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(globalActions.setRenderVisible(true));
-  // }, []);
 
   useEffect(() => {
     async function fetchItemDetails() {
+      dispatch(globalActions.setLoading(true));
       const response = await fetch(
         `https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=${key}`
       );
+      console.log(loading);
       const data = await response.json();
       console.log(data);
       const transformedDetails = {
@@ -45,10 +43,19 @@ export default function ItemDetails() {
       transformedDetails.runtimeMinutes = runtimeInMinutes % 60;
 
       setDetails(transformedDetails);
+      dispatch(globalActions.setLoading(false));
+      console.log(loading);
     }
     fetchItemDetails();
   }, []);
   console.log(details);
+  console.log(details.genres);
+  console.log(Array.isArray(details.genres));
+  console.log(loading);
+  if (!details) {
+    // If details is not yet set, you can choose to render a loading state or return null
+    return <p>Loading...</p>;
+  }
 
   return (
     <>
@@ -67,9 +74,8 @@ export default function ItemDetails() {
         <div className={classes.smallDetails}>
           <div className={classes.genres}>
             {/* {details.genres.map((genre) => (
-              <p className={classes.genre}>{genre.name}</p>
-            ))} */}
-            <p>{details.genres}</p>
+                <p className={classes.genre}>{genre}</p>
+              ))} */}
           </div>
 
           <p>{details.releaseYear}</p>
@@ -102,7 +108,9 @@ export default function ItemDetails() {
               <table>
                 <tr className={classes.listFlex}>
                   <th className={classes.item}>Released</th>
-                  <td className={classes.value}>{details.releaseDate}</td>
+                  <td className={classes.value}>
+                    {new Date(details.releaseData).toLocaleDateString("en-US")}
+                  </td>
                 </tr>
 
                 <tr className={classes.listFlex}>
@@ -119,12 +127,14 @@ export default function ItemDetails() {
 
                 <tr className={classes.listFlex}>
                   <th className={classes.item}>Budget</th>
-                  <td className={classes.value}>${details.budget}</td>
+                  <td className={classes.value}>
+                    {/* ${details.budget.toLocaleString("en-US")} */}
+                  </td>
                 </tr>
 
                 <tr className={classes.listFlex}>
                   <th className={classes.item}>Genres</th>
-                  <td className={classes.value}>{details.genres}</td>
+                  {/* <td className={classes.value}>{details.genres.join(", ")}</td> */}
                 </tr>
 
                 <tr className={classes.listFlex}>
