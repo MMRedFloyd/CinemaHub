@@ -124,6 +124,7 @@
 .item {
   /* flex-grow: 1; */
   padding-right: 3rem;
+  text-align: left;
 }
 
 .value {

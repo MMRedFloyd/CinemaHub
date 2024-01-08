@@ -9,12 +9,14 @@ import { globalActions } from "../../store/global-slice";
 export default function ItemDetails() {
   const [details, setDetails] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [table, setTable] = useState(false);
   const dispatch = useDispatch();
   // const loading = useSelector((state) => state.global.loading);
   const id = "872585";
 
   useEffect(() => {
     async function fetchItemDetails() {
+      setTable(true);
       setLoading(true);
       // dispatch(globalActions.setLoading(true));
       const response = await fetch(
@@ -61,10 +63,6 @@ export default function ItemDetails() {
     // If details is not yet set, you can choose to render a loading state or return null
     return <p>Loading...</p>;
   }
-
-  // if (details.length == 0) {
-  //   return <p>Loading...</p>;
-  // }
 
   return (
     <>
@@ -126,60 +124,64 @@ export default function ItemDetails() {
             <p className={classes.overview}>{details.overview}</p>
 
             <div className={classes.stats}>
-              <table>
-                {details && (
-                  <>
-                    <tr className={classes.listFlex}>
-                      <th className={classes.item}>Released</th>
-                      <td className={classes.value}>
-                        {new Date(details.releaseDate)
-                          .toLocaleDateString("en-UK")
-                          .replace(/\//g, "-")}
-                      </td>
-                    </tr>
+              {table && (
+                <table>
+                  {details && (
+                    <>
+                      <tr className={classes.listFlex}>
+                        <th className={classes.item}>Released</th>
+                        <td className={classes.value}>
+                          {new Date(details.releaseDate)
+                            .toLocaleDateString("en-UK")
+                            .replace(/\//g, ".")}
+                        </td>
+                      </tr>
 
-                    <tr className={classes.listFlex}>
-                      <th className={classes.item}>Runtime</th>
-                      <td className={classes.value}>
-                        {details.runtimeHours}h {details.runtimeMinutes}min
-                      </td>
-                    </tr>
+                      <tr className={classes.listFlex}>
+                        <th className={classes.item}>Runtime</th>
+                        <td className={classes.value}>
+                          {details.runtimeHours}h {details.runtimeMinutes}min
+                        </td>
+                      </tr>
 
-                    <tr className={classes.listFlex}>
-                      <th className={classes.item}>Director</th>
-                      <td className={classes.value}>{details.releaseDate}</td>
-                    </tr>
+                      {/* <tr className={classes.listFlex}>
+                        <th className={classes.item}>Director</th>
+                        <td className={classes.value}>{details.releaseDate}</td>
+                      </tr> */}
 
-                    <tr className={classes.listFlex}>
-                      <th className={classes.item}>Budget</th>
-                      <td className={classes.value}>
-                        {/* ${details.budget.toLocaleString("en-US")} */}
-                        {details.budget
-                          ? `$${Number(details.budget).toLocaleString("en-US")}`
-                          : "Not available"}
-                        {/* {details.budget} */}
-                      </td>
-                    </tr>
+                      <tr className={classes.listFlex}>
+                        <th className={classes.item}>Budget</th>
+                        <td className={classes.value}>
+                          {/* ${details.budget.toLocaleString("en-US")} */}
+                          {details.budget
+                            ? `$${Number(details.budget).toLocaleString(
+                                "en-US"
+                              )}`
+                            : "Not available"}
+                          {/* {details.budget} */}
+                        </td>
+                      </tr>
 
-                    <tr className={classes.listFlex}>
-                      <th className={classes.item}>Genres</th>
-                      <td className={classes.value}>
-                        {/* {details.genres.join(", ")} */}
-                        {details.genres ? (
-                          details.genres.join(", ")
-                        ) : (
-                          <p>Loading genres...</p>
-                        )}
-                      </td>
-                    </tr>
+                      <tr className={classes.listFlex}>
+                        <th className={classes.item}>Genres</th>
+                        <td className={classes.value}>
+                          {/* {details.genres.join(", ")} */}
+                          {details.genres ? (
+                            details.genres.join(", ")
+                          ) : (
+                            <p>Loading genres...</p>
+                          )}
+                        </td>
+                      </tr>
 
-                    <tr className={classes.listFlex}>
-                      <th className={classes.item}>Language</th>
-                      <td className={classes.value}>{details.releaseDate}</td>
-                    </tr>
-                  </>
-                )}
-              </table>
+                      <tr className={classes.listFlex}>
+                        <th className={classes.item}>Language</th>
+                        <td className={classes.value}>{details.releaseDate}</td>
+                      </tr>
+                    </>
+                  )}
+                </table>
+              )}
             </div>
           </div>
         </div>
