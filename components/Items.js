@@ -33,7 +33,7 @@ export default function Items({ data, hrefProp }) {
         }}
         scrollbar={{
           enabled: true,
-          hide: false,
+          hide: true,
         }}
         navigation={true}
         modules={[Keyboard, Scrollbar, Navigation, Pagination]}
@@ -42,7 +42,7 @@ export default function Items({ data, hrefProp }) {
         <div className={classes.itemsContainer}>
           {data.map((item) => (
             <SwiperSlide className={classes.swiperSlide}>
-              <Link href={"872585"}>
+              <Link href={`${hrefProp}/${item.id}`}>
                 <Item key={item.id} item={item} />
               </Link>
             </SwiperSlide>

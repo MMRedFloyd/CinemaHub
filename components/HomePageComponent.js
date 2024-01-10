@@ -2,6 +2,7 @@ import classes from "./HomePageComponent.module.css";
 import { key } from "./api";
 import Items from "./Items";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 function HomePageComponent() {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -54,12 +55,16 @@ function HomePageComponent() {
     <>
       <h1 className={classes.welcome}>CinemaHub</h1>
       <div className={classes.mntContainer}>
-        <h2 className={classes.sectionTitle}>Movies</h2>
+        <Link href={"movies"} className={classes.sectionTitle}>
+          Movies
+        </Link>
         <Items data={trendingMovies} hrefProp="/movies" />
       </div>
 
       <div className={classes.mntContainer}>
-        <h2 className={classes.sectionTitle}>TV Shows</h2>
+        <Link href={"tvshows"} className={classes.sectionTitle}>
+          TV Shows
+        </Link>
         <Items data={trendingTvshows} hrefProp="/tvshows" />
       </div>
 
