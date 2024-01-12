@@ -9,6 +9,8 @@ import { globalActions } from "../store/global-slice";
 export default function ItemDetails(props) {
   const [loading, setLoading] = useState(false);
   const [table, setTable] = useState(false);
+  const [availableRuntime, setAvailableRuntime] = useState(true);
+  const [availableBudget, setAvailableBudget] = useState(true);
   const dispatch = useDispatch();
   // const loading = useSelector((state) => state.global.loading);
   // const id = "872585";
@@ -59,6 +61,15 @@ export default function ItemDetails(props) {
     // If props is not yet set, you can choose to render a loading state or return null
     return <p>Loading...</p>;
   }
+  useEffect(() => {
+    if (!props.budget) {
+      setAvailableBudget(false);
+    }
+
+    if (!props.runtime) {
+      setAvailableRuntime(false);
+    }
+  }, []);
 
   return (
     <>
@@ -95,10 +106,12 @@ export default function ItemDetails(props) {
 
           <p>{props.releaseYear}</p>
 
-          <div className={classes.segment}>
-            <LuClock3 className={classes.clockIcon} />
-            {props.runtimeHours}h {props.runtimeMinutes}min
-          </div>
+          {availableRuntime && (
+            <div className={classes.segment}>
+              <LuClock3 className={classes.clockIcon} />
+              {props.runtimeHours}h {props.runtimeMinutes}min
+            </div>
+          )}
 
           <div className={classes.segment}>
             <BsStar className={classes.starIcon} />
@@ -133,28 +146,34 @@ export default function ItemDetails(props) {
                         </td>
                       </tr>
 
-                      <tr className={classes.listFlex}>
-                        <th className={classes.item}>Runtime</th>
-                        <td className={classes.value}>
-                          {props.runtimeHours}h {props.runtimeMinutes}min
-                        </td>
-                      </tr>
+                      {availableRuntime && (
+                        <tr className={classes.listFlex}>
+                          <th className={classes.item}>Runtime</th>
+                          <td className={classes.value}>
+                            {props.runtimeHours}h {props.runtimeMinutes}min
+                          </td>
+                        </tr>
+                      )}
 
                       {/* <tr className={classes.listFlex}>
                         <th className={classes.item}>Director</th>
                         <td className={classes.value}>{props.releaseDate}</td>
                       </tr> */}
 
-                      <tr className={classes.listFlex}>
-                        <th className={classes.item}>Budget</th>
-                        <td className={classes.value}>
-                          {/* ${props.budget.toLocaleString("en-US")} */}
-                          {props.budget
-                            ? `$${Number(props.budget).toLocaleString("en-US")}`
-                            : "Not available"}
-                          {/* {props.budget} */}
-                        </td>
-                      </tr>
+                      {availableBudget && (
+                        <tr className={classes.listFlex}>
+                          <th className={classes.item}>Budget</th>
+                          <td className={classes.value}>
+                            {/* ${props.budget.toLocaleString("en-US")} */}
+                            {props.budget
+                              ? `$${Number(props.budget).toLocaleString(
+                                  "en-US"
+                                )}`
+                              : "Not available"}
+                            {/* {props.budget} */}
+                          </td>
+                        </tr>
+                      )}
 
                       <tr className={classes.listFlex}>
                         <th className={classes.item}>Genres</th>
@@ -168,10 +187,10 @@ export default function ItemDetails(props) {
                         </td>
                       </tr>
 
-                      <tr className={classes.listFlex}>
+                      {/* <tr className={classes.listFlex}>
                         <th className={classes.item}>Language</th>
                         <td className={classes.value}>{props.releaseDate}</td>
-                      </tr>
+                      </tr> */}
                     </>
                   )}
                 </table>

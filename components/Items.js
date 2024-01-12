@@ -35,6 +35,13 @@ export default function Items({ data, hrefProp }) {
           enabled: true,
           hide: true,
         }}
+        style={{
+          "--swiper-scrollbar-bottom": "30px",
+          "--swiper-scrollbar-drag-bg-color": "rgb(20, 177, 169)",
+          "--swiper-navigation-top-offset": "40%",
+          "--swiper-navigation-sides-offset": "10px",
+          "--swiper-navigation-color": "rgb(20, 177, 169)",
+        }}
         navigation={true}
         modules={[Keyboard, Scrollbar, Navigation, Pagination]}
         className={classes.swiper}
@@ -48,13 +55,17 @@ export default function Items({ data, hrefProp }) {
             </SwiperSlide>
           ))}
         </div>
-        <SwiperSlide className={classes.swiperSlide}>
-          <Link href={`${hrefProp}`}>
-            <div className={classes.itemContainer}>
-              <p className={classes.exploremore}>Explore more</p>
-            </div>
-          </Link>
-        </SwiperSlide>
+
+        <div className={classes.itemContainer}>
+          {data.map((item) => (
+            <SwiperSlide className={classes.swiperSlide}>
+              <Link href={`${hrefProp}/${item.id}`}>
+                <Item key={item.id} item={item} />
+                {/* <p className={classes.exploremore}>Explore more</p> */}
+              </Link>
+            </SwiperSlide>
+          ))}
+        </div>
       </Swiper>
     </>
   );
