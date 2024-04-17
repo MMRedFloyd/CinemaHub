@@ -3,6 +3,7 @@ import { key } from "./api";
 import Items from "./Items";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import MainContainer from "./UI/MainContainer";
 
 function HomePageComponent() {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -53,24 +54,22 @@ function HomePageComponent() {
 
   return (
     <>
-      <h1 className={classes.welcome}>CinemaHub</h1>
-      <div className={classes.mntContainer}>
-        <Link href={"movies"} className={classes.sectionTitle}>
-          Movies
-        </Link>
-        <Items data={trendingMovies} hrefProp="/movies" />
-      </div>
+      <MainContainer>
+        <h1 className={classes.welcome}>CinemaHub</h1>
+        <div className={classes.mntContainer}>
+          <Link href={"movies"} className={classes.sectionTitle}>
+            Movies
+          </Link>
+          <Items data={trendingMovies} hrefProp="/movies" />
+        </div>
 
-      <div className={classes.mntContainer}>
-        <Link href={"tvshows"} className={classes.sectionTitle}>
-          TV Shows
-        </Link>
-        <Items data={trendingTvshows} hrefProp="/tvshows" />
-      </div>
-
-      <div className={classes.newsContainer}>
-        <h2 className={classes.sectionTitle}>News</h2>
-      </div>
+        <div className={classes.mntContainer}>
+          <Link href={"tvshows"} className={classes.sectionTitle}>
+            TV Shows
+          </Link>
+          <Items data={trendingTvshows} hrefProp="/tvshows" />
+        </div>
+      </MainContainer>
     </>
   );
 }

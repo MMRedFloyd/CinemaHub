@@ -69,17 +69,17 @@ export default function MoviesHomePage() {
       <h1 className={classes.titlePage}>Movies</h1>
       <div>
         <h2 className={classes.sectionTitle}>Trending</h2>
-        <Items data={trendingMovies} hrefProp={"/movies/trending"} />
+        <Items data={trendingMovies} hrefProp={"/movies"} />
       </div>
 
       <div>
         <h2 className={classes.sectionTitle}>Upcoming</h2>
-        <Items data={upcomingMovies} hrefProp={"/movies/upcoming"} />
+        <Items data={upcomingMovies} hrefProp={"/movies"} />
       </div>
 
       <div>
         <h2 className={classes.sectionTitle}>Top Rated</h2>
-        <Items data={topratedMovies} hrefProp={"/movies/toprated"} />
+        <Items data={topratedMovies} hrefProp={"/movies"} />
       </div>
     </>
   );

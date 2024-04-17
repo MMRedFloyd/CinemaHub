@@ -44,7 +44,7 @@ function NavigationBar() {
             </Link>
           </div>
 
-          <div
+          {/* <div
             className={
               router.pathname.startsWith("/news") ? classes.bgMelt : ""
             }
@@ -52,7 +52,7 @@ function NavigationBar() {
             <Link className={classes.link} href="/news">
               News
             </Link>
-          </div>
+          </div> */}
           <div
           // className={
           //   router.pathname.startsWith("/loop") ? classes.bgMelt : ""

@@ -73,17 +73,17 @@ export default function TvshowsHomePage() {
       <h1 className={classes.titlePage}>TV Shows</h1>
       <div>
         <h2 className={classes.sectionTitle}>Trending</h2>
-        <Items data={trendingTvshows} hrefProp={"/tvshows/trending"} />
+        <Items data={trendingTvshows} hrefProp={"/tvshows"} />
       </div>
 
       <div>
         <h2 className={classes.sectionTitle}>Upcoming</h2>
-        <Items data={upcomingTvshows} hrefProp={"/tvshows/upcoming"} />
+        <Items data={upcomingTvshows} hrefProp={"/tvshows"} />
       </div>
 
       <div>
         <h2 className={classes.sectionTitle}>Top Rated</h2>
-        <Items data={topratedTvshows} hrefProp={"/tvshows/toprated"} />
+        <Items data={topratedTvshows} hrefProp={"/tvshows"} />
       </div>
     </>
   );
